@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#F3F6FA">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="ANDROID MEMORY MONITOR"
+            android:textColor="#17324D"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="SYSTEM RAM" android:textStyle="bold" android:textSize="18sp" android:textColor="#176B87" />
+        <TextView android:id="@+id/systemText" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Collecting system memory…" android:textSize="16sp" android:padding="12dp" android:background="#FFFFFF" android:layout_marginBottom="16dp" />
+        <ProgressBar android:id="@+id/usageProgress" style="?android:attr/progressBarStyleHorizontal" android:layout_width="match_parent" android:layout_height="16dp" android:max="100" android:progress="0" android:layout_marginTop="-12dp" android:layout_marginBottom="16dp" android:contentDescription="System RAM usage percentage" />
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="KERNEL MEMORY (/proc/meminfo, MiB)" android:textStyle="bold" android:textSize="18sp" android:textColor="#176B87" />
+        <TextView android:id="@+id/procText" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Reading kernel memory fields…" android:textSize="14sp" android:fontFamily="monospace" android:padding="12dp" android:background="#FFFFFF" android:layout_marginBottom="16dp" />
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="THIS APP" android:textStyle="bold" android:textSize="18sp" android:textColor="#176B87" />
+        <TextView android:id="@+id/appText" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Collecting process memory…" android:textSize="15sp" android:padding="12dp" android:background="#FFFFFF" android:layout_marginBottom="16dp" />
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="VISIBLE PROCESSES" android:textStyle="bold" android:textSize="18sp" android:textColor="#176B87" />
+        <TextView android:id="@+id/processesText" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Checking Android process visibility…" android:textSize="14sp" android:padding="12dp" android:background="#FFFFFF" android:layout_marginBottom="16dp" />
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="RAM USAGE HISTORY (LAST 20 SAMPLES)" android:textStyle="bold" android:textSize="18sp" android:textColor="#176B87" />
+        <TextView android:id="@+id/historyText" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Waiting for samples…" android:textSize="14sp" android:padding="12dp" android:background="#FFFFFF" android:layout_marginBottom="16dp" />
+    </LinearLayout>
+</ScrollView>

@@ -14,6 +14,19 @@ import java.util.Locale;
 public class MemoryMonitor {
     private final ArrayDeque<Integer> recentSamples = new ArrayDeque<>();
 
+    /** Used RAM in bytes for one {@link ActivityManager.MemoryInfo} sample. */
+    public static long usedBytes(ActivityManager.MemoryInfo info) {
+        return Math.max(0, info.totalMem - info.availMem);
+    }
+
+    /** System RAM usage percent (0-100) for one sample. */
+    public static int usagePercent(ActivityManager.MemoryInfo info) {
+        if (info.totalMem <= 0) {
+            return 0;
+        }
+        return (int) Math.min(100, Math.max(0, usedBytes(info) * 100.0 / info.totalMem));
+    }
+
     public ActivityManager.MemoryInfo readSystemMemory(ActivityManager activityManager) {
         if (activityManager == null) {
             return null;
@@ -77,6 +90,48 @@ public class MemoryMonitor {
         if (recentSamples.size() > 20) {
             recentSamples.removeFirst();
         }
+    }
+
+    /** Oldest-to-newest copy of the retained samples (at most 20). */
+    public List<Integer> getHistorySamples() {
+        return new ArrayList<>(recentSamples);
+    }
+
+    /**
+     * Lists the processes Android exposes to this app, with PSS where the public API
+     * provides it. Modern Android restricts visibility of unrelated apps; failures are
+     * reported as text instead of fabricated values.
+     */
+    public String readVisibleProcesses(ActivityManager activityManager) {
+        if (activityManager == null) {
+            return "Process information is unavailable.";
+        }
+        List<ActivityManager.RunningAppProcessInfo> processes;
+        try {
+            processes = activityManager.getRunningAppProcesses();
+        } catch (RuntimeException exception) {
+            return "Android did not provide a visible process list.";
+        }
+        if (processes == null || processes.isEmpty()) {
+            return "Android did not provide a visible process list. Modern Android versions limit app process visibility.";
+        }
+        StringBuilder text = new StringBuilder();
+        for (ActivityManager.RunningAppProcessInfo process : processes) {
+            int[] pids = new int[]{process.pid};
+            try {
+                android.os.Debug.MemoryInfo[] memory = activityManager.getProcessMemoryInfo(pids);
+                int pssKb = memory != null && memory.length > 0 ? memory[0].getTotalPss() : -1;
+                text.append(process.processName).append(" | PID ").append(process.pid)
+                        .append(" | PSS: ").append(pssKb >= 0
+                                ? String.format(Locale.US, "%.2f MiB", pssKb / 1024.0) : "unavailable")
+                        .append('\n');
+            } catch (RuntimeException exception) {
+                text.append(process.processName).append(" | PID ").append(process.pid)
+                        .append(" | PSS unavailable\n");
+            }
+        }
+        text.append("\n\nAndroid limits visibility of unrelated apps. This list contains only processes the public API makes visible.");
+        return text.toString().trim();
     }
 
     public String getHistoryText() {

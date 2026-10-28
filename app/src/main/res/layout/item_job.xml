@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingTop="6dp"
+    android:paddingBottom="6dp">
+
+    <TextView
+        android:id="@+id/jobIdText"
+        android:layout_width="34dp"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/job_id_cd"
+        android:textColor="@color/primary"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        tools:text="P1" />
+
+    <TextView
+        android:id="@+id/jobLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/text_secondary"
+        android:textSize="12sp"
+        tools:text="Worker A (PID 1234)" />
+
+    <EditText
+        android:id="@+id/jobArrivalInput"
+        android:layout_width="48dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="6dp"
+        android:contentDescription="@string/arrival_hint"
+        android:gravity="center"
+        android:hint="@string/arrival_hint"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        android:maxLines="1"
+        android:textSize="13sp"
+        tools:text="0" />
+
+    <EditText
+        android:id="@+id/jobBurstInput"
+        android:layout_width="48dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="6dp"
+        android:contentDescription="@string/burst_hint"
+        android:gravity="center"
+        android:hint="@string/burst_hint"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        android:maxLines="1"
+        android:textSize="13sp"
+        tools:text="5" />
+
+    <TextView
+        android:id="@+id/jobRemainingText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/text_secondary"
+        android:textSize="12sp"
+        tools:text="Remaining: 5" />
+
+    <TextView
+        android:id="@+id/jobStateChip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/bg_chip_blue"
+        android:textColor="@color/info_blue"
+        android:textSize="11sp"
+        android:textStyle="bold"
+        tools:text="READY" />
+</LinearLayout>

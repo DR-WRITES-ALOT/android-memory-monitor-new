@@ -21,6 +21,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Demo worker processes: each Service runs in its own private process of this
+             app (own PID, own memory) so the dashboard can show memory distribution.
+             They are exported to nothing and the app never touches other apps. -->
+        <service
+            android:name=".WorkerAService"
+            android:exported="false"
+            android:process=":worker_a" />
+        <service
+            android:name=".WorkerBService"
+            android:exported="false"
+            android:process=":worker_b" />
+        <service
+            android:name=".WorkerCService"
+            android:exported="false"
+            android:process=":worker_c" />
+        <service
+            android:name=".WorkerDService"
+            android:exported="false"
+            android:process=":worker_d" />
     </application>
 
 </manifest>

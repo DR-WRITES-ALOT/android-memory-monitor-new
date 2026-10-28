@@ -1,3 +1,98 @@
 <resources>
     <string name="app_name">AndroidMemoryMonitor</string>
+
+    <!-- Header -->
+    <string name="app_title">Memory Monitor</string>
+    <string name="app_subtitle">System RAM, app memory and demo workers</string>
+    <string name="status_normal">Normal</string>
+    <string name="status_high_pressure">High memory pressure</string>
+    <string name="status_low_memory">Low memory</string>
+    <string name="updated_never">Waiting for first sample…</string>
+    <string name="updated_at">Updated %1$s</string>
+
+    <!-- System RAM -->
+    <string name="section_system_ram">System RAM</string>
+    <string name="system_ram_usage_cd">System RAM usage percentage</string>
+    <string name="system_collecting">Collecting system memory…</string>
+    <string name="system_unavailable">System memory information is unavailable.</string>
+    <string name="system_details_format">Used: %1$.2f GiB of %2$.2f GiB\nAvailable: %3$.2f GiB\nLow-memory flag: %4$s</string>
+    <string name="low_memory_yes">YES — Android reports low memory</string>
+    <string name="low_memory_no">No</string>
+    <string name="ram_warning_message">⚠ High memory pressure — %1$d%% of RAM is used. Demo workers are stopped automatically at 80%% (if enabled) and the cycle re-arms at 75%%.</string>
+    <string name="ram_warning_no_auto">⚠ High memory pressure — %1$d%% of RAM is used. Automatic cleanup is off; use “Cleanup now” or add no workers.</string>
+
+    <!-- App / kernel memory -->
+    <string name="section_app_memory">This app</string>
+    <string name="app_collecting">Collecting process memory…</string>
+    <string name="app_unavailable">This app\'s memory information is unavailable.</string>
+    <string name="section_kernel_memory">Kernel memory (/proc/meminfo)</string>
+    <string name="kernel_collecting">Reading kernel memory fields…</string>
+
+    <!-- Duplicate workers -->
+    <string name="section_workers">Duplicate demo processes</string>
+    <string name="workers_intro">Each worker is a real app-owned Android process (Service with android:process) with its own PID and memory. Only these workers are ever cleaned up — never third-party apps.</string>
+    <string name="auto_cleanup_label">Automatic cleanup at 80% RAM</string>
+    <string name="workers_max_reached">Maximum of four demo workers is already running.</string>
+    <string name="add_worker">Add worker</string>
+    <string name="remove_all_workers">Remove all</string>
+    <string name="cleanup_now">Cleanup now</string>
+    <string name="alloc_hint">MiB per worker (1–32)</string>
+    <string name="worker_total_format">Workers: %1$d alive · total reported PSS: %2$s · allocated blocks: %3$s</string>
+    <string name="worker_total_unavailable">Workers: %1$d alive · total reported PSS: unavailable</string>
+    <string name="worker_pss_note">PSS (proportional set size) shares shared pages proportionally, so the per-worker column is not independently owned RAM. The total is the sum of reported PSS values, not extra physical RAM on top of the app\'s own PSS.</string>
+    <string name="workers_empty">No demo workers running. Use “Add worker” to create up to four app-owned processes.</string>
+    <string name="cleanup_no_workers">RAM above 80%% but no demo workers are running — nothing to clean up.</string>
+    <string name="cleanup_manual_nothing">No demo workers were running — nothing to clean up.</string>
+    <string name="cleanup_waiting">Cleanup requested — measuring RAM after the worker processes exit…</string>
+    <string name="worker_pid_format">PID %1$s · %2$s · private dirty %3$s</string>
+
+    <!-- Scheduler -->
+    <string name="section_scheduler">CPU scheduling simulator</string>
+    <string name="simulation_banner">Educational simulation — simulated ticks for the demo worker jobs. This is NOT a measurement of the Linux kernel\'s real CPU scheduler, which public Android APIs cannot observe.</string>
+    <string name="algorithm_fcfs">FCFS</string>
+    <string name="algorithm_rr">Round Robin</string>
+    <string name="quantum_label">Quantum</string>
+    <string name="quantum_hint">1–10 ticks</string>
+    <string name="start_simulation">Start</string>
+    <string name="pause_simulation">Pause</string>
+    <string name="resume_simulation">Resume</string>
+    <string name="reset_simulation">Reset</string>
+    <string name="scheduler_needs_workers">Add demo workers first — each worker becomes one scheduling job.</string>
+    <string name="job_id_cd">Job id</string>
+    <string name="arrival_hint">Arrival</string>
+    <string name="burst_hint">Burst</string>
+    <string name="remaining_format">Remaining: %1$d</string>
+    <string name="state_ready">READY</string>
+    <string name="state_running">RUNNING</string>
+    <string name="state_completed">COMPLETED</string>
+    <string name="gantt_caption_idle">Timeline appears when the simulation starts.</string>
+    <string name="gantt_caption_format">Simulated time: %1$d ticks · %2$s</string>
+    <string name="playback_running">running</string>
+    <string name="playback_paused">paused</string>
+    <string name="playback_finished">finished</string>
+    <string name="results_idle">Results appear after a run. Waiting time = turnaround time − burst time.</string>
+    <string name="results_header_format">%1$s — per-job results (ticks):</string>
+    <string name="results_row_format">%1$s: arrival %2$d · burst %3$d · waiting %4$d · turnaround %5$d</string>
+    <string name="results_averages_format">Average waiting time: %1$.2f · Average turnaround time: %2$.2f</string>
+    <string name="comparison_format">Comparison — %1$s vs %2$s</string>
+    <string name="comparison_placeholder">Run both FCFS and Round Robin to compare their averages.</string>
+    <string name="explain_fcfs">First Come, First Served (FCFS): jobs run to completion in arrival order. It is simple and easy to compute by hand, but one long job delays every job behind it (the convoy effect).</string>
+    <string name="explain_rr">Round Robin (RR): the ready queue is served in order, each job running for at most one time quantum before moving on. Short jobs finish sooner and every job is treated fairly; smaller quanta mean more context switches.</string>
+
+    <!-- History -->
+    <string name="section_history">RAM usage history</string>
+    <string name="history_cd">Sparkline of the latest 20 system RAM usage samples with a dashed line at the 80 percent threshold</string>
+
+    <!-- Details -->
+    <string name="section_processes">Detailed process information</string>
+    <string name="processes_collecting">Checking Android process visibility…</string>
+
+    <!-- Worker table -->
+    <string name="worker_status_starting">STARTING</string>
+    <string name="worker_status_running">RUNNING</string>
+    <string name="worker_status_stopped">STOPPED</string>
+    <string name="worker_status_killed">KILLED</string>
+    <string name="cd_remove_worker">Stop and remove this worker</string>
+    <string name="worker_share_format">%1$d%% of worker PSS</string>
+    <string name="worker_share_cd">Share of total worker PSS</string>
 </resources>

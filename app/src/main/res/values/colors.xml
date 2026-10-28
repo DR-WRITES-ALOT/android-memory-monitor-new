@@ -2,4 +2,21 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Light, neutral monitoring palette -->
+    <color name="background">#F5F7FA</color>
+    <color name="surface">#FFFFFFFF</color>
+    <color name="primary">#176B87</color>
+    <color name="primary_dark">#0B3C53</color>
+    <color name="text_primary">#17324D</color>
+    <color name="text_secondary">#5A6B7B</color>
+    <color name="divider">#E1E7ED</color>
+
+    <color name="warning_red">#C62828</color>
+    <color name="warning_bg">#FDECEA</color>
+    <color name="success_green">#2E7D32</color>
+    <color name="success_bg">#E8F5E9</color>
+    <color name="info_blue">#1565C0</color>
+    <color name="info_bg">#E3F2FD</color>
+    <color name="neutral_bg">#ECEFF1</color>
 </resources>

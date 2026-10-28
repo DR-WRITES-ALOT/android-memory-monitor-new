@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.2"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/workerName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_primary"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            tools:text="Worker A" />
+
+        <TextView
+            android:id="@+id/workerPid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            tools:text="PID 1234 · :worker_a" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/workerPss"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:textColor="@color/text_primary"
+            android:textSize="13sp"
+            tools:text="PSS 5.20 MiB" />
+
+        <TextView
+            android:id="@+id/workerDirty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            tools:text="dirty 2.10 MiB" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/workerShareText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_secondary"
+            android:textSize="11sp"
+            tools:text="33% of worker PSS" />
+
+        <ProgressBar
+            android:id="@+id/workerShareBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:layout_marginTop="2dp"
+            android:max="100"
+            android:progress="33"
+            android:progressDrawable="@android:drawable/progress_horizontal"
+            android:contentDescription="@string/worker_share_cd" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/workerStatusChip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/bg_chip_green"
+        android:textColor="@color/success_green"
+        android:textSize="11sp"
+        android:textStyle="bold"
+        tools:text="RUNNING" />
+
+    <TextView
+        android:id="@+id/workerRemoveButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="4dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/cd_remove_worker"
+        android:gravity="center"
+        android:text="✕"
+        android:textColor="@color/warning_red"
+        android:textSize="18sp" />
+</LinearLayout>
